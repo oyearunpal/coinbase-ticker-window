@@ -1,0 +1,48 @@
+capture=captures/heavy_all_symbols_3hr.bin window=3600s ticks=160897 symbols=155
+-- tracked_histogram vs exact_map --
+  mean/low/high mismatches: 0 / 0 / 0 (must all be 0 -- claimed exact)
+  median relative error: max=0.784314% (0.9961x the proven 0.787402% bound) mean=0.262308% max_abs=3985989 cents
+-- tracked_histogram cursor moves --
+  moves=211 / ticks=160897 (0.1311% of median() calls stepped the cursor to another bucket)
+-- range_histogram vs exact_map --
+  ticks by mode: exact=153749 fallback=7104 capped=44 (of 160897 total)
+  exact-mode mean/low/high mismatches: 0 / 0 / 0 (must all be 0)
+  exact-mode median max_abs_err: 0 cents (must be exactly 0 -- this IS the claim)
+-- range_histogram (fallback-mode ticks) vs exact_map --
+  mean/low/high mismatches: 0 / 0 / 0 (must all be 0 -- claimed exact)
+  median relative error: max=0.784314% (0.9961x the proven 0.787402% bound) mean=0.271676% max_abs=59 cents
+  capped-range-mode median relative error: max=0.000004% mean=0.000002% (informational only -- no proven bound applies to this mode; see the policy's own header for what a capped bucket means there)
+-- range_histogram rebuild/escape counts --
+  rebuilds=2 escapes=0 (of 160897 ticks -- both expected near 0 on real captures)
+-- range_histogram_no_rebuild vs exact_map --
+  ticks by mode: exact=153749 fallback=7104 capped=44 (of 160897 total)
+  exact-mode mean/low/high mismatches: 0 / 0 / 0 (must all be 0)
+  exact-mode median relative error: max=0.143885% mean=0.000034% max_abs=10 cents (informational -- this is the accepted error from skipping the rebuild on an escape; see this file's header comment)
+-- range_histogram_no_rebuild (fallback-mode ticks) vs exact_map --
+  mean/low/high mismatches: 0 / 0 / 0 (must all be 0 -- claimed exact)
+  median relative error: max=0.784314% (0.9961x the proven 0.787402% bound) mean=0.271676% max_abs=59 cents
+  capped-range-mode median relative error: max=0.000004% mean=0.000002% (informational only -- no proven bound applies to this mode; see the policy's own header for what a capped bucket means there)
+-- range_histogram_no_rebuild rebuild/escape counts --
+  rebuilds=0 (must be 0 -- this policy never rebuilds by design) escapes=95 (of 160897 ticks -- each one is an accepted error, traded for skipping the rebuild v4 would have done here)
+-- sorted_vector vs exact_map --
+  mean/low/high mismatches: 0 / 0 / 0 (must all be 0 -- claimed exact)
+  median relative error: max=0.000000% (0.0000x the proven 0.787402% bound) mean=0.000000% max_abs=0 cents
+  (claims bit-exact, like exact_map itself -- max_abs_err above must be exactly 0)
+-- sorted_vector_freq vs exact_map --
+  mean/low/high mismatches: 0 / 0 / 0 (must all be 0 -- claimed exact)
+  median relative error: max=0.000000% (0.0000x the proven 0.787402% bound) mean=0.000000% max_abs=0 cents
+  (claims bit-exact, like exact_map itself -- max_abs_err above must be exactly 0)
+-- sorted_vector_freq: the two halves of its design tradeoff, measured --
+  duplicate collapse at end of capture: 51127 live samples over 11020 distinct prices (4.64x) -- entries shifted per insert scale with the DISTINCT count
+  median walk: 27117 entries stepped over 160897 median() calls (0.2 entries/call average) -- the cost of moving the tracked pointer
+  fallbacks=22536 / ticks=160897 (14.0065% of median() calls missed the O(1) pointer; 1.2 entries/fallback average)
+-- hybrid_histogram vs exact_map --
+  ticks by mode: exact=105077 fallback=7104 capped=48716 (of 160897 total)
+  exact-mode mean/low/high mismatches: 0 / 0 / 0 (must all be 0)
+  exact-mode median max_abs_err: 0 cents (must be exactly 0 -- this IS the claim)
+-- hybrid_histogram (fallback-mode ticks) vs exact_map --
+  mean/low/high mismatches: 0 / 0 / 0 (must all be 0 -- claimed exact)
+  median relative error: max=0.784314% (0.9961x the proven 0.787402% bound) mean=0.271676% max_abs=59 cents
+  capped-range-mode median relative error: max=0.000012% mean=0.000006% (informational only -- no proven bound applies to this mode; see the policy's own header for what a capped bucket means there)
+-- hybrid_histogram core tracking --
+  re-centres=3 (one whole-window replay each) tail_inserts=275 (0.1709% of ticks landed outside the core) max_tail_high_water=64 (cap 64) median_cursor_misses=20545

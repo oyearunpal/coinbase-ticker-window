@@ -1,0 +1,14 @@
+run: logs/verification  policy=hybrid_histogram  window=300s  symbols=[BTC-USD,ETH-USD,SOL-USD]
+elapsed_ms=601006 non_ticker_frames=1 ring_full_spin_events=0
+rows: 4154 in 3 CSVs, as the writer logged
+
+logs/verification/stats_BTC-USD.csv: 2231 rows; mean/high/low/range/count mismatches: 0
+  median: 100.0% exact
+logs/verification/stats_ETH-USD.csv: 1306 rows; mean/high/low/range/count mismatches: 0
+  median: 100.0% exact
+logs/verification/stats_SOL-USD.csv: 617 rows; mean/high/low/range/count mismatches: 0
+  median: 100.0% exact
+all files (window=300s): 4154 rows; mean/high/low/range/count mismatches: 0
+  median: 100.0% exact
+
+OK

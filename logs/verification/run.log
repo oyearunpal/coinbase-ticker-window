@@ -1,0 +1,28 @@
+=== ticker_feed starting ===
+feed.endpoint=wss://ws-feed.exchange.coinbase.com
+feed.symbols=[BTC-USD,ETH-USD,SOL-USD]
+feed.duration_ns=600000000000
+window.length_ns=300000000000
+window.policy=hybrid_histogram
+output.dir=logs/verification
+output.flush_interval_ns=200000000
+cpu.pin=shared_l3
+cpu.feed_core=-1
+cpu.writer_core=-1
+capture.record=
+capture.replay=
+
+cpu pin plan: shared_l3: cpu0 + cpu1 (distinct physical cores, same L3 domain)
+feed thread pin to cpu0: ok
+connecting to wss://ws-feed.exchange.coinbase.com ...
+writer thread pin to cpu1: ok
+subscribed to 3 product(s)
+writer: 4154 rows written
+=== summary ===
+elapsed_ms=601006
+parse_failures=0
+non_ticker_frames=1
+unknown_symbol=0
+ring_full_spin_events=0
+total_window_ring_grow_events=0
+active_symbols=3/3

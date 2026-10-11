@@ -1,0 +1,34 @@
+build/
+.sysroot/
+*.o
+*.a
+*.so
+compile_commands.json
+.cache/
+__pycache__/
+
+# Raw ticker recordings -- large binaries, not source.
+captures/*.bin
+
+# Local-only run output and perf history. Only the curated submission logs
+# (logs/verification/) and published benchmark results (logs/bench/) are tracked.
+logs/*
+!logs/verification/
+!logs/bench/
+logs/bench/*
+!logs/bench/results.csv
+!logs/bench/accuracy_*.txt
+
+# Local-only files: editor config, notes, and recording helpers.
+.vscode/
+.clangd
+assignment.md
+record_3hr.sh
+conf/capture_three_symbols_long.conf
+
+# Fetches Boost/OpenSSL .debs into .sysroot/ on a machine without dev packages
+# or sudo; a normal machine installs the packages listed in README instead.
+tools/fetch_deps_local.sh
+
+# Earlier, longer design/perf notes kept for local reference.
+docs/archive/

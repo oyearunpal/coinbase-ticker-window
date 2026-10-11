@@ -1,0 +1,1510 @@
+# ticker_tests -- 2026-09-30T17:23:55Z, commit f7b45d1
+# compiler: c++ (Ubuntu 16-20260315-1ubuntu1~22~ppa1) 16.0.1 20260315 (experimental) [trunk r16-8100-g3aca3bae8ee]; build: Release (-O3 -DNDEBUG)
+# each line: duration and test case (templated cases show the policy in <>)
+
+[doctest] doctest version is "2.4.11"
+[doctest] run with "--help" for options
+===============================================================================
+tests/test_config.cpp:7:
+TEST CASE:  RawConfig: basic key/value round trip through sections
+
+0.000069 s: RawConfig: basic key/value round trip through sections
+===============================================================================
+tests/test_config.cpp:23:
+TEST CASE:  RawConfig: comments and blank lines are ignored
+
+0.000012 s: RawConfig: comments and blank lines are ignored
+===============================================================================
+tests/test_config.cpp:36:
+TEST CASE:  RawConfig: string arrays
+
+0.000013 s: RawConfig: string arrays
+===============================================================================
+tests/test_config.cpp:48:
+TEST CASE:  RawConfig: duration suffixes ms/s/m/h and bare-number-as-seconds
+
+0.000014 s: RawConfig: duration suffixes ms/s/m/h and bare-number-as-seconds
+===============================================================================
+tests/test_config.cpp:64:
+TEST CASE:  RawConfig: size suffixes k/m
+
+0.000011 s: RawConfig: size suffixes k/m
+===============================================================================
+tests/test_config.cpp:71:
+TEST CASE:  RawConfig: bool parsing
+
+0.000018 s: RawConfig: bool parsing
+===============================================================================
+tests/test_config.cpp:77:
+TEST CASE:  RawConfig: missing required key throws
+
+0.000098 s: RawConfig: missing required key throws
+===============================================================================
+tests/test_config.cpp:82:
+TEST CASE:  RawConfig: key outside any section is an error
+
+0.000022 s: RawConfig: key outside any section is an error
+===============================================================================
+tests/test_config.cpp:86:
+TEST CASE:  RawConfig: CLI override precedence over file value
+
+0.000012 s: RawConfig: CLI override precedence over file value
+===============================================================================
+tests/test_config.cpp:93:
+TEST CASE:  RawConfig: unknown key is a hard error once checked
+
+0.000027 s: RawConfig: unknown key is a hard error once checked
+===============================================================================
+tests/test_config.cpp:99:
+TEST CASE:  RawConfig: all-recognized-keys passes the check
+
+0.000009 s: RawConfig: all-recognized-keys passes the check
+===============================================================================
+tests/test_config.cpp:105:
+TEST CASE:  AppConfig: loads the shipped ticker.conf
+
+0.000078 s: AppConfig: loads the shipped ticker.conf
+===============================================================================
+tests/test_config.cpp:115:
+TEST CASE:  AppConfig: feed.symbols = ["*"] is rejected (whole-cent products only)
+
+0.000020 s: AppConfig: feed.symbols = ["*"] is rejected (whole-cent products only)
+===============================================================================
+tests/test_config.cpp:123:
+TEST CASE:  AppConfig: the removed [universe] section is an unrecognized key
+
+0.000026 s: AppConfig: the removed [universe] section is an unrecognized key
+===============================================================================
+tests/test_config.cpp:133:
+TEST CASE:  AppConfig: every real policy name is accepted by window.policy, and resolves to the matching PolicyId
+
+0.000050 s: AppConfig: every real policy name is accepted by window.policy, and resolves to the matching PolicyId
+===============================================================================
+tests/test_config.cpp:162:
+TEST CASE:  AppConfig: window.policy defaults to hybrid_histogram at any window length, and "auto" is no longer accepted
+
+0.000057 s: AppConfig: window.policy defaults to hybrid_histogram at any window length, and "auto" is no longer accepted
+===============================================================================
+tests/test_config.cpp:174:
+TEST CASE:  AppConfig: an unrecognized window.policy value is rejected
+
+0.000026 s: AppConfig: an unrecognized window.policy value is rejected
+===============================================================================
+tests/test_config.cpp:184:
+TEST CASE:  AppConfig: rejects a config with a typo'd key
+
+0.000023 s: AppConfig: rejects a config with a typo'd key
+===============================================================================
+tests/test_config.cpp:193:
+TEST CASE:  AppConfig: explicit cpu pin mode requires both cores set
+
+0.000020 s: AppConfig: explicit cpu pin mode requires both cores set
+===============================================================================
+tests/test_config.cpp:203:
+TEST CASE:  AppConfig: defaults apply when sections are omitted
+
+0.000013 s: AppConfig: defaults apply when sections are omitted
+===============================================================================
+tests/test_cpu_affinity.cpp:37:
+TEST CASE:  parse_cpu_list: ranges and singles
+
+0.000014 s: parse_cpu_list: ranges and singles
+===============================================================================
+tests/test_cpu_affinity.cpp:46:
+TEST CASE:  discover_topology + shared_l3: dual-CCX machine (like the dev box)
+
+0.007618 s: discover_topology + shared_l3: dual-CCX machine (like the dev box)
+===============================================================================
+tests/test_cpu_affinity.cpp:86:
+TEST CASE:  choose_pin_plan: single-CCX machine, shared_l3 still finds two distinct cores
+
+0.002933 s: choose_pin_plan: single-CCX machine, shared_l3 still finds two distinct cores
+===============================================================================
+tests/test_cpu_affinity.cpp:100:
+TEST CASE:  choose_pin_plan: single-core machine falls back to unpinned rather than refusing to run
+
+0.001114 s: choose_pin_plan: single-core machine falls back to unpinned rather than refusing to run
+===============================================================================
+tests/test_cpu_affinity.cpp:115:
+TEST CASE:  choose_pin_plan: missing /sys tree falls back to unpinned gracefully
+
+0.000009 s: choose_pin_plan: missing /sys tree falls back to unpinned gracefully
+===============================================================================
+tests/test_cpu_affinity.cpp:122:
+TEST CASE:  choose_pin_plan: none mode never pins
+
+0.000007 s: choose_pin_plan: none mode never pins
+===============================================================================
+tests/test_cpu_affinity.cpp:128:
+TEST CASE:  choose_pin_plan: explicit mode trusts the config verbatim
+
+0.000009 s: choose_pin_plan: explicit mode trusts the config verbatim
+===============================================================================
+tests/test_cpu_affinity.cpp:136:
+TEST CASE:  pin_current_thread_to: pinning to cpu 0 succeeds on this machine
+
+0.000063 s: pin_current_thread_to: pinning to cpu 0 succeeds on this machine
+===============================================================================
+tests/test_cpu_affinity.cpp:148:
+TEST CASE:  pin_current_thread_to: an absurd cpu id fails gracefully rather than crashing
+
+0.000013 s: pin_current_thread_to: an absurd cpu id fails gracefully rather than crashing
+===============================================================================
+tests/test_csv_writer.cpp:13:
+TEST CASE:  format_csv_row: matches the documented column order and formatting
+
+0.000013 s: format_csv_row: matches the documented column order and formatting
+===============================================================================
+tests/test_csv_writer.cpp:35:
+TEST CASE:  format_csv_row: range is exactly high - low
+
+0.000010 s: format_csv_row: range is exactly high - low
+===============================================================================
+tests/test_csv_writer.cpp:49:
+TEST CASE:  format_csv_row: INT64_MIN trade_id does not trigger UB on negation
+
+0.000007 s: format_csv_row: INT64_MIN trade_id does not trigger UB on negation
+===============================================================================
+tests/test_csv_writer.cpp:60:
+TEST CASE:  CsvWriter: writes a header once and appends rows to a per-symbol file
+
+0.000350 s: CsvWriter: writes a header once and appends rows to a per-symbol file
+===============================================================================
+tests/test_csv_writer.cpp:97:
+TEST CASE:  CsvWriter: reopening an existing file appends rather than re-writing the header
+
+0.000231 s: CsvWriter: reopening an existing file appends rather than re-writing the header
+===============================================================================
+tests/test_digits.cpp:8:
+TEST CASE:  digits::put2: every value 0-99, exhaustively, against snprintf
+
+0.000043 s: digits::put2: every value 0-99, exhaustively, against snprintf
+===============================================================================
+tests/test_digits.cpp:19:
+TEST CASE:  digits::put3: every value 0-999, exhaustively, against snprintf
+
+0.000380 s: digits::put3: every value 0-999, exhaustively, against snprintf
+===============================================================================
+tests/test_digits.cpp:31:
+TEST CASE:  digits::put2/put3: don't write past their declared width
+
+0.000009 s: digits::put2/put3: don't write past their declared width
+===============================================================================
+tests/test_exact_map_policy.cpp:10:
+TEST CASE:  ExactMapWindow: erasing the tracked entry's last sample moves the median correctly
+
+0.000019 s: ExactMapWindow: erasing the tracked entry's last sample moves the median correctly
+===============================================================================
+tests/test_exact_map_policy.cpp:31:
+TEST CASE:  ExactMapWindow: equal prices share one map entry
+
+0.000009 s: ExactMapWindow: equal prices share one map entry
+===============================================================================
+tests/test_fixed_price.cpp:8:
+TEST CASE:  parse_price: basic decimals, in cents
+
+0.000008 s: parse_price: basic decimals, in cents
+===============================================================================
+tests/test_fixed_price.cpp:16:
+TEST CASE:  parse_price: integers with no fraction
+
+0.000006 s: parse_price: integers with no fraction
+===============================================================================
+tests/test_fixed_price.cpp:20:
+TEST CASE:  parse_price: trailing zeros past the cents are accepted
+
+0.000007 s: parse_price: trailing zeros past the cents are accepted
+===============================================================================
+tests/test_fixed_price.cpp:25:
+TEST CASE:  parse_price: a nonzero digit past the cents is rejected, not truncated
+
+0.000007 s: parse_price: a nonzero digit past the cents is rejected, not truncated
+===============================================================================
+tests/test_fixed_price.cpp:32:
+TEST CASE:  parse_price: the uint32 cents ceiling
+
+0.000009 s: parse_price: the uint32 cents ceiling
+===============================================================================
+tests/test_fixed_price.cpp:39:
+TEST CASE:  parse_price: a sign is malformed (prices are non-negative)
+
+0.000008 s: parse_price: a sign is malformed (prices are non-negative)
+===============================================================================
+tests/test_fixed_price.cpp:44:
+TEST CASE:  parse_price: rejects malformed input
+
+0.000008 s: parse_price: rejects malformed input
+===============================================================================
+tests/test_fixed_price.cpp:54:
+TEST CASE:  parse_price: trailing dot with no fractional digits is accepted as .0
+
+0.000007 s: parse_price: trailing dot with no fractional digits is accepted as .0
+===============================================================================
+tests/test_fixed_price.cpp:61:
+TEST CASE:  avg_price: midpoint rounded half-up to a cent, no overflow at UINT32_MAX
+
+0.000070 s: avg_price: midpoint rounded half-up to a cent, no overflow at UINT32_MAX
+===============================================================================
+tests/test_fixed_price.cpp:73:
+TEST CASE:  format_price: always two decimals
+
+0.000008 s: format_price: always two decimals
+===============================================================================
+tests/test_fixed_price.cpp:83:
+TEST CASE:  parse_price/format_price round trip over typical prices
+
+0.000008 s: parse_price/format_price round trip over typical prices
+===============================================================================
+tests/test_flat_histogram.cpp:36:
+TEST CASE:  FlatOccupancyHistogram: next/prev_nonempty match a scan across word and level boundaries
+
+0.000124 s: FlatOccupancyHistogram: next/prev_nonempty match a scan across word and level boundaries
+===============================================================================
+tests/test_flat_histogram.cpp:65:
+TEST CASE:  FlatOccupancyHistogram: random inc/dec agrees with a scan, several sizes
+
+0.001952 s: FlatOccupancyHistogram: random inc/dec agrees with a scan, several sizes
+===============================================================================
+tests/test_flat_histogram.cpp:91:
+TEST CASE:  FlatOccupancyHistogram: size edge cases and bytes()
+
+0.000229 s: FlatOccupancyHistogram: size edge cases and bytes()
+===============================================================================
+tests/test_flat_histogram.cpp:176:
+TEST CASE:  TrackedHistogramWindow: stress streams vs brute force, within the proven bound
+
+0.058222 s: TrackedHistogramWindow: stress streams vs brute force, within the proven bound
+===============================================================================
+tests/test_flat_histogram.cpp:185:
+TEST CASE:  RangeHistogramWindow: stress streams vs brute force, exact inside the band
+
+0.007545 s: RangeHistogramWindow: stress streams vs brute force, exact inside the band
+===============================================================================
+tests/test_flat_histogram.cpp:194:
+TEST CASE:  HybridHistogramWindow: stress streams vs brute force, exact (shipped and tiny core)
+
+0.017202 s: HybridHistogramWindow: stress streams vs brute force, exact (shipped and tiny core)
+===============================================================================
+tests/test_hybrid_histogram_policy.cpp:49:
+TEST CASE:  HybridHistogramWindow: Handle layout matches the other histogram policies'
+
+0.000011 s: HybridHistogramWindow: Handle layout matches the other histogram policies'
+===============================================================================
+tests/test_hybrid_histogram_policy.cpp:56:
+TEST CASE:  HybridHistogramWindow: with no note_market(), runs on the global fallback scheme -- bounded, with both tails permanently unused
+
+0.000007 s: HybridHistogramWindow: with no note_market(), runs on the global fallback scheme -- bounded, with both tails permanently unused
+===============================================================================
+tests/test_hybrid_histogram_policy.cpp:69:
+TEST CASE:  HybridHistogramWindow: an unusable [low, high] leaves it in fallback rather than failing
+
+0.000004 s: HybridHistogramWindow: an unusable [low, high] leaves it in fallback rather than failing
+===============================================================================
+tests/test_hybrid_histogram_policy.cpp:77:
+TEST CASE:  HybridHistogramWindow: note_market() caps the core at MaxCoreBuckets even when the symbol's 24h band is far wider -- the memory claim, checked directly
+
+0.000005 s: HybridHistogramWindow: note_market() caps the core at MaxCoreBuckets even when the symbol's 24h band is far wider -- the memory claim, checked directly
+===============================================================================
+tests/test_hybrid_histogram_policy.cpp:86:
+TEST CASE:  HybridHistogramWindow: a narrow 24h band is sized to the band, not to the cap
+
+0.000005 s: HybridHistogramWindow: a narrow 24h band is sized to the band, not to the cap
+===============================================================================
+tests/test_hybrid_histogram_policy.cpp:94:
+TEST CASE:  HybridHistogramWindow: an established core gives a bit-exact median, and the core is positioned by the first price rather than at note_market() time
+
+0.000005 s: HybridHistogramWindow: an established core gives a bit-exact median, and the core is positioned by the first price rather than at note_market() time
+===============================================================================
+tests/test_hybrid_histogram_policy.cpp:108:
+TEST CASE:  HybridHistogramWindow: prices outside the core land in the tails and are answered EXACTLY -- no re-centre until a tail fills
+
+0.000005 s: HybridHistogramWindow: prices outside the core land in the tails and are answered EXACTLY -- no re-centre until a tail fills
+===============================================================================
+tests/test_hybrid_histogram_policy.cpp:128:
+TEST CASE:  HybridHistogramWindow: a median that falls INSIDE a tail is resolved from the tail, exactly
+
+0.000005 s: HybridHistogramWindow: a median that falls INSIDE a tail is resolved from the tail, exactly
+===============================================================================
+tests/test_hybrid_histogram_policy.cpp:141:
+TEST CASE:  HybridHistogramWindow: mixed core/tail occupancy stays bit-exact against a brute-force oracle across a long interleaved insert/erase fuzz
+
+0.003111 s: HybridHistogramWindow: mixed core/tail occupancy stays bit-exact against a brute-force oracle across a long interleaved insert/erase fuzz
+===============================================================================
+tests/test_hybrid_histogram_policy.cpp:183:
+TEST CASE:  HybridHistogramWindow seam: on_tick's low_24h/high_24h establishes the core, and a window that stays put never re-centres
+
+0.000007 s: HybridHistogramWindow seam: on_tick's low_24h/high_24h establishes the core, and a window that stays put never re-centres
+===============================================================================
+tests/test_hybrid_histogram_policy.cpp:199:
+TEST CASE:  HybridHistogramWindow seam: a tail fills to MaxTailSize before a re-centre fires -- small excursions cost a tail insert, not a whole-window replay
+
+0.000006 s: HybridHistogramWindow seam: a tail fills to MaxTailSize before a re-centre fires -- small excursions cost a tail insert, not a whole-window replay
+===============================================================================
+tests/test_hybrid_histogram_policy.cpp:222:
+TEST CASE:  HybridHistogramWindow seam: a sustained monotonic trend forces many re-centres and stays bit-exact against the brute-force oracle at EVERY step
+
+0.000072 s: HybridHistogramWindow seam: a sustained monotonic trend forces many re-centres and stays bit-exact against the brute-force oracle at EVERY step
+===============================================================================
+tests/test_hybrid_histogram_policy.cpp:246:
+TEST CASE:  HybridHistogramWindow seam: a live span wider than the core cap falls back to multi-cent buckets -- bounded, not exact, and honestly reported by exact()
+
+0.000162 s: HybridHistogramWindow seam: a live span wider than the core cap falls back to multi-cent buckets -- bounded, not exact, and honestly reported by exact()
+===============================================================================
+tests/test_hybrid_histogram_policy.cpp:268:
+TEST CASE:  HybridHistogramWindow seam: the shipped 65,536-bucket configuration holds a realistic window entirely in its core, bit-exact, with no re-centring at all
+
+0.466023 s: HybridHistogramWindow seam: the shipped 65,536-bucket configuration holds a realistic window entirely in its core, bit-exact, with no re-centring at all
+===============================================================================
+tests/test_hybrid_histogram_policy.cpp:294:
+TEST CASE:  HybridHistogramWindow: clear() keeps the core geometry, so a replayed pass doesn't re-derive it from scratch
+
+0.000007 s: HybridHistogramWindow: clear() keeps the core geometry, so a replayed pass doesn't re-derive it from scratch
+===============================================================================
+tests/test_iso8601_price.cpp:12:
+TEST CASE:  parse_iso8601_ns: real Coinbase timestamp
+
+0.000004 s: parse_iso8601_ns: real Coinbase timestamp
+===============================================================================
+tests/test_iso8601_price.cpp:21:
+TEST CASE:  parse_iso8601_ns: epoch
+
+0.000004 s: parse_iso8601_ns: epoch
+===============================================================================
+tests/test_iso8601_price.cpp:27:
+TEST CASE:  parse_iso8601_ns: no fractional part
+
+0.000003 s: parse_iso8601_ns: no fractional part
+===============================================================================
+tests/test_iso8601_price.cpp:33:
+TEST CASE:  parse_iso8601_ns: fewer than 9 fractional digits
+
+0.000004 s: parse_iso8601_ns: fewer than 9 fractional digits
+===============================================================================
+tests/test_iso8601_price.cpp:39:
+TEST CASE:  parse_iso8601_ns: leap year Feb 29
+
+0.000004 s: parse_iso8601_ns: leap year Feb 29
+===============================================================================
+tests/test_iso8601_price.cpp:47:
+TEST CASE:  parse_iso8601_ns: rejects malformed timestamps
+
+0.000004 s: parse_iso8601_ns: rejects malformed timestamps
+===============================================================================
+tests/test_iso8601_price.cpp:56:
+TEST CASE:  format_iso8601_ns: round-trips real Coinbase timestamps exactly
+
+0.000005 s: format_iso8601_ns: round-trips real Coinbase timestamps exactly
+===============================================================================
+tests/test_iso8601_price.cpp:67:
+TEST CASE:  format_iso8601_ns: handles pre-epoch (negative) nanosecond counts
+
+0.000006 s: format_iso8601_ns: handles pre-epoch (negative) nanosecond counts
+===============================================================================
+tests/test_iso8601_price.cpp:76:
+TEST CASE:  parse_iso8601_ns: monotonic across a day boundary
+
+0.000005 s: parse_iso8601_ns: monotonic across a day boundary
+===============================================================================
+tests/test_iso8601_price.cpp:135:
+TEST CASE:  parse_iso8601_ns_fast: exactly 6 fractional digits (the other real-world shape)
+
+0.000005 s: parse_iso8601_ns_fast: exactly 6 fractional digits (the other real-world shape)
+===============================================================================
+tests/test_iso8601_price.cpp:146:
+TEST CASE:  parse_iso8601_ns_fast: exactly 9 fractional digits hits the fast path
+
+0.000004 s: parse_iso8601_ns_fast: exactly 9 fractional digits hits the fast path
+===============================================================================
+tests/test_iso8601_price.cpp:156:
+TEST CASE:  parse_iso8601_ns_fast: random valid timestamps agree with the general parser
+
+0.014842 s: parse_iso8601_ns_fast: random valid timestamps agree with the general parser
+===============================================================================
+tests/test_iso8601_price.cpp:175:
+TEST CASE:  parse_iso8601_ns_fast: random single-byte mutations either both reject or agree
+
+0.010339 s: parse_iso8601_ns_fast: random single-byte mutations either both reject or agree
+===============================================================================
+tests/test_iso8601_price.cpp:189:
+TEST CASE:  parse_iso8601_ns_fast: non-digit byte in every fixed digit position is safely rejected
+
+0.000007 s: parse_iso8601_ns_fast: non-digit byte in every fixed digit position is safely rejected
+===============================================================================
+tests/test_iso8601_price.cpp:201:
+TEST CASE:  parse_iso8601_ns_fast: only exact fraction-digit counts 6 and 9 use the fast path
+
+0.000008 s: parse_iso8601_ns_fast: only exact fraction-digit counts 6 and 9 use the fast path
+===============================================================================
+tests/test_iso8601_price.cpp:224:
+TEST CASE:  Iso8601Formatter: matches format_iso8601_ns on repeated real timestamps
+
+0.000005 s: Iso8601Formatter: matches format_iso8601_ns on repeated real timestamps
+===============================================================================
+tests/test_iso8601_price.cpp:239:
+TEST CASE:  Iso8601Formatter: cache hit across a day boundary stays correct
+
+0.000004 s: Iso8601Formatter: cache hit across a day boundary stays correct
+===============================================================================
+tests/test_iso8601_price.cpp:254:
+TEST CASE:  Iso8601Formatter: non-monotonic (out-of-order) call sequence -- cache assumes nothing about ordering
+
+0.000016 s: Iso8601Formatter: non-monotonic (out-of-order) call sequence -- cache assumes nothing about ordering
+===============================================================================
+tests/test_iso8601_price.cpp:281:
+TEST CASE:  Iso8601Formatter: random timestamps, fresh formatter per call (all cache misses)
+
+0.000584 s: Iso8601Formatter: random timestamps, fresh formatter per call (all cache misses)
+===============================================================================
+tests/test_iso8601_price.cpp:304:
+TEST CASE:  parse_iso8601_ns_fast: leap year and sec==60 via the fast path
+
+0.000008 s: parse_iso8601_ns_fast: leap year and sec==60 via the fast path
+===============================================================================
+tests/test_parser.cpp:12:
+TEST CASE:  parse_ticker: real captured ETH-USD frame
+
+0.000007 s: parse_ticker: real captured ETH-USD frame
+===============================================================================
+tests/test_parser.cpp:32:
+TEST CASE:  parse_ticker: real captured BTC-USD frame with a whole-number field (high_24h:85257)
+
+0.000005 s: parse_ticker: real captured BTC-USD frame with a whole-number field (high_24h:85257)
+===============================================================================
+tests/test_parser.cpp:48:
+TEST CASE:  parse_ticker: low_24h/high_24h missing entirely still accepts the tick (optional field)
+
+0.000005 s: parse_ticker: low_24h/high_24h missing entirely still accepts the tick (optional field)
+===============================================================================
+tests/test_parser.cpp:57:
+TEST CASE:  parse_ticker: malformed low_24h/high_24h degrades to nullopt rather than rejecting the tick
+
+0.000004 s: parse_ticker: malformed low_24h/high_24h degrades to nullopt rather than rejecting the tick
+===============================================================================
+tests/test_parser.cpp:67:
+TEST CASE:  parse_ticker: low_24h/high_24h order-independent, same as the other fields
+
+0.000004 s: parse_ticker: low_24h/high_24h order-independent, same as the other fields
+===============================================================================
+tests/test_parser.cpp:79:
+TEST CASE:  parse_ticker: rejects the subscriptions ack (not type=ticker)
+
+0.000003 s: parse_ticker: rejects the subscriptions ack (not type=ticker)
+===============================================================================
+tests/test_parser.cpp:85:
+TEST CASE:  parse_ticker: rejects heartbeat and error message types
+
+0.000004 s: parse_ticker: rejects heartbeat and error message types
+===============================================================================
+tests/test_parser.cpp:90:
+TEST CASE:  parse_ticker: rejects truncated JSON
+
+0.000004 s: parse_ticker: rejects truncated JSON
+===============================================================================
+tests/test_parser.cpp:97:
+TEST CASE:  parse_ticker: rejects a ticker message missing trade_id
+
+0.000004 s: parse_ticker: rejects a ticker message missing trade_id
+===============================================================================
+tests/test_parser.cpp:103:
+TEST CASE:  parse_ticker: rejects a ticker message missing price
+
+0.000003 s: parse_ticker: rejects a ticker message missing price
+===============================================================================
+tests/test_parser.cpp:109:
+TEST CASE:  parse_ticker: rejects malformed price or time even if all fields present
+
+0.000004 s: parse_ticker: rejects malformed price or time even if all fields present
+===============================================================================
+tests/test_parser.cpp:114:
+TEST CASE:  parse_ticker: field order does not matter (single pass recognizes keys, not positions)
+
+0.000004 s: parse_ticker: field order does not matter (single pass recognizes keys, not positions)
+===============================================================================
+tests/test_parser.cpp:124:
+TEST CASE:  parse_ticker: nanosecond-resolution time field (9 fractional digits) still parses
+
+0.000004 s: parse_ticker: nanosecond-resolution time field (9 fractional digits) still parses
+===============================================================================
+tests/test_parser.cpp:132:
+TEST CASE:  parse_ticker: negative trade_id is accepted as a bare number (schema allows it in principle)
+
+0.000005 s: parse_ticker: negative trade_id is accepted as a bare number (schema allows it in principle)
+===============================================================================
+tests/test_parser.cpp:142:
+TEST CASE:  parse_ticker: an unrecognized nested object field is skipped without desyncing the parse
+
+0.000004 s: parse_ticker: an unrecognized nested object field is skipped without desyncing the parse
+===============================================================================
+tests/test_parser.cpp:151:
+TEST CASE:  parse_ticker: real captured frames loaded from tests/fixtures also round-trip
+
+0.000018 s: parse_ticker: real captured frames loaded from tests/fixtures also round-trip
+===============================================================================
+tests/test_parser.cpp:172:
+TEST CASE:  scan_fast: the real captured frame's exact wire shape hits the fast path
+
+0.000004 s: scan_fast: the real captured frame's exact wire shape hits the fast path
+===============================================================================
+tests/test_parser.cpp:192:
+TEST CASE:  scan_fast: reordered keys, an added field, a removed field, and embedded whitespace all miss the fast path -- but parse_ticker still accepts them via scan_generic
+
+0.000006 s: scan_fast: reordered keys, an added field, a removed field, and embedded whitespace all miss the fast path -- but parse_ticker still accepts them via scan_generic
+===============================================================================
+tests/test_parser.cpp:238:
+TEST CASE:  scan_fast: a price given as a bare JSON number (not a quoted string) is rejected by both the fast and the generic path
+
+0.000003 s: scan_fast: a price given as a bare JSON number (not a quoted string) is rejected by both the fast and the generic path
+===============================================================================
+tests/test_parser.cpp:262:
+TEST CASE:  differential: scan_fast agrees with scan_generic on every mutation/truncation of every real fixture frame
+
+0.005981 s: differential: scan_fast agrees with scan_generic on every mutation/truncation of every real fixture frame
+===============================================================================
+tests/test_policy_contract.cpp:102:
+TEST CASE:  Policy contract: single element, then back to empty<ticker::test::ExactMapCase>
+
+0.000007 s: Policy contract: single element, then back to empty<ticker::test::ExactMapCase>
+===============================================================================
+tests/test_policy_contract.cpp:102:
+TEST CASE:  Policy contract: single element, then back to empty<ticker::test::SortedVectorCase>
+
+0.000004 s: Policy contract: single element, then back to empty<ticker::test::SortedVectorCase>
+===============================================================================
+tests/test_policy_contract.cpp:102:
+TEST CASE:  Policy contract: single element, then back to empty<ticker::test::SortedVectorFreqCase>
+
+0.000011 s: Policy contract: single element, then back to empty<ticker::test::SortedVectorFreqCase>
+===============================================================================
+tests/test_policy_contract.cpp:102:
+TEST CASE:  Policy contract: single element, then back to empty<ticker::test::TrackedHistogramCase>
+
+0.000006 s: Policy contract: single element, then back to empty<ticker::test::TrackedHistogramCase>
+===============================================================================
+tests/test_policy_contract.cpp:102:
+TEST CASE:  Policy contract: single element, then back to empty<ticker::test::RangeExactCase>
+
+0.001016 s: Policy contract: single element, then back to empty<ticker::test::RangeExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:102:
+TEST CASE:  Policy contract: single element, then back to empty<ticker::test::RangeFallbackCase>
+
+0.000010 s: Policy contract: single element, then back to empty<ticker::test::RangeFallbackCase>
+===============================================================================
+tests/test_policy_contract.cpp:102:
+TEST CASE:  Policy contract: single element, then back to empty<ticker::test::RangeNoRebuildExactCase>
+
+0.000676 s: Policy contract: single element, then back to empty<ticker::test::RangeNoRebuildExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:102:
+TEST CASE:  Policy contract: single element, then back to empty<ticker::test::HybridCase>
+
+0.000018 s: Policy contract: single element, then back to empty<ticker::test::HybridCase>
+===============================================================================
+tests/test_policy_contract.cpp:115:
+TEST CASE:  Policy contract: odd and even counts<ticker::test::ExactMapCase>
+
+0.000007 s: Policy contract: odd and even counts<ticker::test::ExactMapCase>
+===============================================================================
+tests/test_policy_contract.cpp:115:
+TEST CASE:  Policy contract: odd and even counts<ticker::test::SortedVectorCase>
+
+0.000005 s: Policy contract: odd and even counts<ticker::test::SortedVectorCase>
+===============================================================================
+tests/test_policy_contract.cpp:115:
+TEST CASE:  Policy contract: odd and even counts<ticker::test::SortedVectorFreqCase>
+
+0.000005 s: Policy contract: odd and even counts<ticker::test::SortedVectorFreqCase>
+===============================================================================
+tests/test_policy_contract.cpp:115:
+TEST CASE:  Policy contract: odd and even counts<ticker::test::TrackedHistogramCase>
+
+0.000006 s: Policy contract: odd and even counts<ticker::test::TrackedHistogramCase>
+===============================================================================
+tests/test_policy_contract.cpp:115:
+TEST CASE:  Policy contract: odd and even counts<ticker::test::RangeExactCase>
+
+0.000036 s: Policy contract: odd and even counts<ticker::test::RangeExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:115:
+TEST CASE:  Policy contract: odd and even counts<ticker::test::RangeFallbackCase>
+
+0.000005 s: Policy contract: odd and even counts<ticker::test::RangeFallbackCase>
+===============================================================================
+tests/test_policy_contract.cpp:115:
+TEST CASE:  Policy contract: odd and even counts<ticker::test::RangeNoRebuildExactCase>
+
+0.000035 s: Policy contract: odd and even counts<ticker::test::RangeNoRebuildExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:115:
+TEST CASE:  Policy contract: odd and even counts<ticker::test::HybridCase>
+
+0.000009 s: Policy contract: odd and even counts<ticker::test::HybridCase>
+===============================================================================
+tests/test_policy_contract.cpp:134:
+TEST CASE:  Policy contract: all duplicates<ticker::test::ExactMapCase>
+
+0.000012 s: Policy contract: all duplicates<ticker::test::ExactMapCase>
+===============================================================================
+tests/test_policy_contract.cpp:134:
+TEST CASE:  Policy contract: all duplicates<ticker::test::SortedVectorCase>
+
+0.000009 s: Policy contract: all duplicates<ticker::test::SortedVectorCase>
+===============================================================================
+tests/test_policy_contract.cpp:134:
+TEST CASE:  Policy contract: all duplicates<ticker::test::SortedVectorFreqCase>
+
+0.000009 s: Policy contract: all duplicates<ticker::test::SortedVectorFreqCase>
+===============================================================================
+tests/test_policy_contract.cpp:134:
+TEST CASE:  Policy contract: all duplicates<ticker::test::TrackedHistogramCase>
+
+0.000009 s: Policy contract: all duplicates<ticker::test::TrackedHistogramCase>
+===============================================================================
+tests/test_policy_contract.cpp:134:
+TEST CASE:  Policy contract: all duplicates<ticker::test::RangeExactCase>
+
+0.000040 s: Policy contract: all duplicates<ticker::test::RangeExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:134:
+TEST CASE:  Policy contract: all duplicates<ticker::test::RangeFallbackCase>
+
+0.000009 s: Policy contract: all duplicates<ticker::test::RangeFallbackCase>
+===============================================================================
+tests/test_policy_contract.cpp:134:
+TEST CASE:  Policy contract: all duplicates<ticker::test::RangeNoRebuildExactCase>
+
+0.000039 s: Policy contract: all duplicates<ticker::test::RangeNoRebuildExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:134:
+TEST CASE:  Policy contract: all duplicates<ticker::test::HybridCase>
+
+0.000013 s: Policy contract: all duplicates<ticker::test::HybridCase>
+===============================================================================
+tests/test_policy_contract.cpp:152:
+TEST CASE:  Policy contract: monotone increasing and decreasing insert orders<ticker::test::ExactMapCase>
+
+0.000059 s: Policy contract: monotone increasing and decreasing insert orders<ticker::test::ExactMapCase>
+===============================================================================
+tests/test_policy_contract.cpp:152:
+TEST CASE:  Policy contract: monotone increasing and decreasing insert orders<ticker::test::SortedVectorCase>
+
+0.000050 s: Policy contract: monotone increasing and decreasing insert orders<ticker::test::SortedVectorCase>
+===============================================================================
+tests/test_policy_contract.cpp:152:
+TEST CASE:  Policy contract: monotone increasing and decreasing insert orders<ticker::test::SortedVectorFreqCase>
+
+0.000049 s: Policy contract: monotone increasing and decreasing insert orders<ticker::test::SortedVectorFreqCase>
+===============================================================================
+tests/test_policy_contract.cpp:152:
+TEST CASE:  Policy contract: monotone increasing and decreasing insert orders<ticker::test::TrackedHistogramCase>
+
+0.000050 s: Policy contract: monotone increasing and decreasing insert orders<ticker::test::TrackedHistogramCase>
+===============================================================================
+tests/test_policy_contract.cpp:152:
+TEST CASE:  Policy contract: monotone increasing and decreasing insert orders<ticker::test::RangeExactCase>
+
+0.000113 s: Policy contract: monotone increasing and decreasing insert orders<ticker::test::RangeExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:152:
+TEST CASE:  Policy contract: monotone increasing and decreasing insert orders<ticker::test::RangeFallbackCase>
+
+0.000051 s: Policy contract: monotone increasing and decreasing insert orders<ticker::test::RangeFallbackCase>
+===============================================================================
+tests/test_policy_contract.cpp:152:
+TEST CASE:  Policy contract: monotone increasing and decreasing insert orders<ticker::test::RangeNoRebuildExactCase>
+
+0.000115 s: Policy contract: monotone increasing and decreasing insert orders<ticker::test::RangeNoRebuildExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:152:
+TEST CASE:  Policy contract: monotone increasing and decreasing insert orders<ticker::test::HybridCase>
+
+0.000057 s: Policy contract: monotone increasing and decreasing insert orders<ticker::test::HybridCase>
+===============================================================================
+tests/test_policy_contract.cpp:168:
+TEST CASE:  Policy contract: monotonic trend with FIFO eviction (min/max deque worst case)<ticker::test::ExactMapCase>
+
+0.001226 s: Policy contract: monotonic trend with FIFO eviction (min/max deque worst case)<ticker::test::ExactMapCase>
+===============================================================================
+tests/test_policy_contract.cpp:168:
+TEST CASE:  Policy contract: monotonic trend with FIFO eviction (min/max deque worst case)<ticker::test::SortedVectorCase>
+
+0.001106 s: Policy contract: monotonic trend with FIFO eviction (min/max deque worst case)<ticker::test::SortedVectorCase>
+===============================================================================
+tests/test_policy_contract.cpp:168:
+TEST CASE:  Policy contract: monotonic trend with FIFO eviction (min/max deque worst case)<ticker::test::SortedVectorFreqCase>
+
+0.001108 s: Policy contract: monotonic trend with FIFO eviction (min/max deque worst case)<ticker::test::SortedVectorFreqCase>
+===============================================================================
+tests/test_policy_contract.cpp:168:
+TEST CASE:  Policy contract: monotonic trend with FIFO eviction (min/max deque worst case)<ticker::test::TrackedHistogramCase>
+
+0.001111 s: Policy contract: monotonic trend with FIFO eviction (min/max deque worst case)<ticker::test::TrackedHistogramCase>
+===============================================================================
+tests/test_policy_contract.cpp:168:
+TEST CASE:  Policy contract: monotonic trend with FIFO eviction (min/max deque worst case)<ticker::test::RangeExactCase>
+
+0.001136 s: Policy contract: monotonic trend with FIFO eviction (min/max deque worst case)<ticker::test::RangeExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:168:
+TEST CASE:  Policy contract: monotonic trend with FIFO eviction (min/max deque worst case)<ticker::test::RangeFallbackCase>
+
+0.001063 s: Policy contract: monotonic trend with FIFO eviction (min/max deque worst case)<ticker::test::RangeFallbackCase>
+===============================================================================
+tests/test_policy_contract.cpp:168:
+TEST CASE:  Policy contract: monotonic trend with FIFO eviction (min/max deque worst case)<ticker::test::RangeNoRebuildExactCase>
+
+0.001143 s: Policy contract: monotonic trend with FIFO eviction (min/max deque worst case)<ticker::test::RangeNoRebuildExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:168:
+TEST CASE:  Policy contract: monotonic trend with FIFO eviction (min/max deque worst case)<ticker::test::HybridCase>
+
+0.001127 s: Policy contract: monotonic trend with FIFO eviction (min/max deque worst case)<ticker::test::HybridCase>
+===============================================================================
+tests/test_policy_contract.cpp:187:
+TEST CASE:  Policy contract: FIFO fuzz, duplicate-heavy alphabet<ticker::test::ExactMapCase>
+
+0.287826 s: Policy contract: FIFO fuzz, duplicate-heavy alphabet<ticker::test::ExactMapCase>
+===============================================================================
+tests/test_policy_contract.cpp:187:
+TEST CASE:  Policy contract: FIFO fuzz, duplicate-heavy alphabet<ticker::test::SortedVectorCase>
+
+0.288505 s: Policy contract: FIFO fuzz, duplicate-heavy alphabet<ticker::test::SortedVectorCase>
+===============================================================================
+tests/test_policy_contract.cpp:187:
+TEST CASE:  Policy contract: FIFO fuzz, duplicate-heavy alphabet<ticker::test::SortedVectorFreqCase>
+
+0.286574 s: Policy contract: FIFO fuzz, duplicate-heavy alphabet<ticker::test::SortedVectorFreqCase>
+===============================================================================
+tests/test_policy_contract.cpp:187:
+TEST CASE:  Policy contract: FIFO fuzz, duplicate-heavy alphabet<ticker::test::TrackedHistogramCase>
+
+0.296518 s: Policy contract: FIFO fuzz, duplicate-heavy alphabet<ticker::test::TrackedHistogramCase>
+===============================================================================
+tests/test_policy_contract.cpp:187:
+TEST CASE:  Policy contract: FIFO fuzz, duplicate-heavy alphabet<ticker::test::RangeExactCase>
+
+0.288607 s: Policy contract: FIFO fuzz, duplicate-heavy alphabet<ticker::test::RangeExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:187:
+TEST CASE:  Policy contract: FIFO fuzz, duplicate-heavy alphabet<ticker::test::RangeFallbackCase>
+
+0.286551 s: Policy contract: FIFO fuzz, duplicate-heavy alphabet<ticker::test::RangeFallbackCase>
+===============================================================================
+tests/test_policy_contract.cpp:187:
+TEST CASE:  Policy contract: FIFO fuzz, duplicate-heavy alphabet<ticker::test::RangeNoRebuildExactCase>
+
+0.291510 s: Policy contract: FIFO fuzz, duplicate-heavy alphabet<ticker::test::RangeNoRebuildExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:187:
+TEST CASE:  Policy contract: FIFO fuzz, duplicate-heavy alphabet<ticker::test::HybridCase>
+
+0.289028 s: Policy contract: FIFO fuzz, duplicate-heavy alphabet<ticker::test::HybridCase>
+===============================================================================
+tests/test_policy_contract.cpp:191:
+TEST CASE:  Policy contract: FIFO fuzz, wide distinct alphabet<ticker::test::ExactMapCase>
+
+0.177156 s: Policy contract: FIFO fuzz, wide distinct alphabet<ticker::test::ExactMapCase>
+===============================================================================
+tests/test_policy_contract.cpp:191:
+TEST CASE:  Policy contract: FIFO fuzz, wide distinct alphabet<ticker::test::SortedVectorCase>
+
+0.176031 s: Policy contract: FIFO fuzz, wide distinct alphabet<ticker::test::SortedVectorCase>
+===============================================================================
+tests/test_policy_contract.cpp:191:
+TEST CASE:  Policy contract: FIFO fuzz, wide distinct alphabet<ticker::test::SortedVectorFreqCase>
+
+0.176288 s: Policy contract: FIFO fuzz, wide distinct alphabet<ticker::test::SortedVectorFreqCase>
+===============================================================================
+tests/test_policy_contract.cpp:191:
+TEST CASE:  Policy contract: FIFO fuzz, wide distinct alphabet<ticker::test::TrackedHistogramCase>
+
+0.175456 s: Policy contract: FIFO fuzz, wide distinct alphabet<ticker::test::TrackedHistogramCase>
+===============================================================================
+tests/test_policy_contract.cpp:191:
+TEST CASE:  Policy contract: FIFO fuzz, wide distinct alphabet<ticker::test::RangeExactCase>
+
+0.176260 s: Policy contract: FIFO fuzz, wide distinct alphabet<ticker::test::RangeExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:191:
+TEST CASE:  Policy contract: FIFO fuzz, wide distinct alphabet<ticker::test::RangeFallbackCase>
+
+0.175097 s: Policy contract: FIFO fuzz, wide distinct alphabet<ticker::test::RangeFallbackCase>
+===============================================================================
+tests/test_policy_contract.cpp:191:
+TEST CASE:  Policy contract: FIFO fuzz, wide distinct alphabet<ticker::test::RangeNoRebuildExactCase>
+
+0.175775 s: Policy contract: FIFO fuzz, wide distinct alphabet<ticker::test::RangeNoRebuildExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:191:
+TEST CASE:  Policy contract: FIFO fuzz, wide distinct alphabet<ticker::test::HybridCase>
+
+0.175954 s: Policy contract: FIFO fuzz, wide distinct alphabet<ticker::test::HybridCase>
+===============================================================================
+tests/test_policy_contract.cpp:195:
+TEST CASE:  Policy contract: sparse median() calls stay right after many changes<ticker::test::ExactMapCase>
+
+0.011430 s: Policy contract: sparse median() calls stay right after many changes<ticker::test::ExactMapCase>
+===============================================================================
+tests/test_policy_contract.cpp:195:
+TEST CASE:  Policy contract: sparse median() calls stay right after many changes<ticker::test::SortedVectorCase>
+
+0.012257 s: Policy contract: sparse median() calls stay right after many changes<ticker::test::SortedVectorCase>
+===============================================================================
+tests/test_policy_contract.cpp:195:
+TEST CASE:  Policy contract: sparse median() calls stay right after many changes<ticker::test::SortedVectorFreqCase>
+
+0.011409 s: Policy contract: sparse median() calls stay right after many changes<ticker::test::SortedVectorFreqCase>
+===============================================================================
+tests/test_policy_contract.cpp:195:
+TEST CASE:  Policy contract: sparse median() calls stay right after many changes<ticker::test::TrackedHistogramCase>
+
+0.011298 s: Policy contract: sparse median() calls stay right after many changes<ticker::test::TrackedHistogramCase>
+===============================================================================
+tests/test_policy_contract.cpp:195:
+TEST CASE:  Policy contract: sparse median() calls stay right after many changes<ticker::test::RangeExactCase>
+
+0.011542 s: Policy contract: sparse median() calls stay right after many changes<ticker::test::RangeExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:195:
+TEST CASE:  Policy contract: sparse median() calls stay right after many changes<ticker::test::RangeFallbackCase>
+
+0.011312 s: Policy contract: sparse median() calls stay right after many changes<ticker::test::RangeFallbackCase>
+===============================================================================
+tests/test_policy_contract.cpp:195:
+TEST CASE:  Policy contract: sparse median() calls stay right after many changes<ticker::test::RangeNoRebuildExactCase>
+
+0.011495 s: Policy contract: sparse median() calls stay right after many changes<ticker::test::RangeNoRebuildExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:195:
+TEST CASE:  Policy contract: sparse median() calls stay right after many changes<ticker::test::HybridCase>
+
+0.011326 s: Policy contract: sparse median() calls stay right after many changes<ticker::test::HybridCase>
+===============================================================================
+tests/test_policy_contract.cpp:200:
+TEST CASE:  Policy contract: clear() leaves a window that behaves like a fresh one<ticker::test::ExactMapCase>
+
+0.000019 s: Policy contract: clear() leaves a window that behaves like a fresh one<ticker::test::ExactMapCase>
+===============================================================================
+tests/test_policy_contract.cpp:200:
+TEST CASE:  Policy contract: clear() leaves a window that behaves like a fresh one<ticker::test::SortedVectorCase>
+
+0.000013 s: Policy contract: clear() leaves a window that behaves like a fresh one<ticker::test::SortedVectorCase>
+===============================================================================
+tests/test_policy_contract.cpp:200:
+TEST CASE:  Policy contract: clear() leaves a window that behaves like a fresh one<ticker::test::SortedVectorFreqCase>
+
+0.000013 s: Policy contract: clear() leaves a window that behaves like a fresh one<ticker::test::SortedVectorFreqCase>
+===============================================================================
+tests/test_policy_contract.cpp:200:
+TEST CASE:  Policy contract: clear() leaves a window that behaves like a fresh one<ticker::test::TrackedHistogramCase>
+
+0.000012 s: Policy contract: clear() leaves a window that behaves like a fresh one<ticker::test::TrackedHistogramCase>
+===============================================================================
+tests/test_policy_contract.cpp:200:
+TEST CASE:  Policy contract: clear() leaves a window that behaves like a fresh one<ticker::test::RangeExactCase>
+
+0.000069 s: Policy contract: clear() leaves a window that behaves like a fresh one<ticker::test::RangeExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:200:
+TEST CASE:  Policy contract: clear() leaves a window that behaves like a fresh one<ticker::test::RangeFallbackCase>
+
+0.000010 s: Policy contract: clear() leaves a window that behaves like a fresh one<ticker::test::RangeFallbackCase>
+===============================================================================
+tests/test_policy_contract.cpp:200:
+TEST CASE:  Policy contract: clear() leaves a window that behaves like a fresh one<ticker::test::RangeNoRebuildExactCase>
+
+0.000068 s: Policy contract: clear() leaves a window that behaves like a fresh one<ticker::test::RangeNoRebuildExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:200:
+TEST CASE:  Policy contract: clear() leaves a window that behaves like a fresh one<ticker::test::HybridCase>
+
+0.000016 s: Policy contract: clear() leaves a window that behaves like a fresh one<ticker::test::HybridCase>
+===============================================================================
+tests/test_policy_contract.cpp:223:
+TEST CASE:  Policy contract: random-order erase (not FIFO)<ticker::test::ExactMapCase>
+
+0.210364 s: Policy contract: random-order erase (not FIFO)<ticker::test::ExactMapCase>
+===============================================================================
+tests/test_policy_contract.cpp:223:
+TEST CASE:  Policy contract: random-order erase (not FIFO)<ticker::test::SortedVectorCase>
+
+0.211974 s: Policy contract: random-order erase (not FIFO)<ticker::test::SortedVectorCase>
+===============================================================================
+tests/test_policy_contract.cpp:223:
+TEST CASE:  Policy contract: random-order erase (not FIFO)<ticker::test::SortedVectorFreqCase>
+
+0.210341 s: Policy contract: random-order erase (not FIFO)<ticker::test::SortedVectorFreqCase>
+===============================================================================
+tests/test_policy_contract.cpp:253:
+TEST CASE:  Window contract: 300s and 3600s windows match the reference window<ticker::test::ExactMapCase>
+
+0.281019 s: Window contract: 300s and 3600s windows match the reference window<ticker::test::ExactMapCase>
+===============================================================================
+tests/test_policy_contract.cpp:253:
+TEST CASE:  Window contract: 300s and 3600s windows match the reference window<ticker::test::SortedVectorCase>
+
+0.280557 s: Window contract: 300s and 3600s windows match the reference window<ticker::test::SortedVectorCase>
+===============================================================================
+tests/test_policy_contract.cpp:253:
+TEST CASE:  Window contract: 300s and 3600s windows match the reference window<ticker::test::SortedVectorFreqCase>
+
+0.280705 s: Window contract: 300s and 3600s windows match the reference window<ticker::test::SortedVectorFreqCase>
+===============================================================================
+tests/test_policy_contract.cpp:253:
+TEST CASE:  Window contract: 300s and 3600s windows match the reference window<ticker::test::TrackedHistogramCase>
+
+0.280077 s: Window contract: 300s and 3600s windows match the reference window<ticker::test::TrackedHistogramCase>
+===============================================================================
+tests/test_policy_contract.cpp:253:
+TEST CASE:  Window contract: 300s and 3600s windows match the reference window<ticker::test::RangeExactCase>
+
+0.280630 s: Window contract: 300s and 3600s windows match the reference window<ticker::test::RangeExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:253:
+TEST CASE:  Window contract: 300s and 3600s windows match the reference window<ticker::test::RangeFallbackCase>
+
+0.280038 s: Window contract: 300s and 3600s windows match the reference window<ticker::test::RangeFallbackCase>
+===============================================================================
+tests/test_policy_contract.cpp:253:
+TEST CASE:  Window contract: 300s and 3600s windows match the reference window<ticker::test::RangeNoRebuildExactCase>
+
+0.280361 s: Window contract: 300s and 3600s windows match the reference window<ticker::test::RangeNoRebuildExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:253:
+TEST CASE:  Window contract: 300s and 3600s windows match the reference window<ticker::test::HybridCase>
+
+0.280206 s: Window contract: 300s and 3600s windows match the reference window<ticker::test::HybridCase>
+===============================================================================
+tests/test_policy_contract.cpp:261:
+TEST CASE:  Window contract: duplicate-heavy stream matches the reference window<ticker::test::ExactMapCase>
+
+0.011862 s: Window contract: duplicate-heavy stream matches the reference window<ticker::test::ExactMapCase>
+===============================================================================
+tests/test_policy_contract.cpp:261:
+TEST CASE:  Window contract: duplicate-heavy stream matches the reference window<ticker::test::SortedVectorCase>
+
+0.012074 s: Window contract: duplicate-heavy stream matches the reference window<ticker::test::SortedVectorCase>
+===============================================================================
+tests/test_policy_contract.cpp:261:
+TEST CASE:  Window contract: duplicate-heavy stream matches the reference window<ticker::test::SortedVectorFreqCase>
+
+0.011902 s: Window contract: duplicate-heavy stream matches the reference window<ticker::test::SortedVectorFreqCase>
+===============================================================================
+tests/test_policy_contract.cpp:261:
+TEST CASE:  Window contract: duplicate-heavy stream matches the reference window<ticker::test::TrackedHistogramCase>
+
+0.011884 s: Window contract: duplicate-heavy stream matches the reference window<ticker::test::TrackedHistogramCase>
+===============================================================================
+tests/test_policy_contract.cpp:261:
+TEST CASE:  Window contract: duplicate-heavy stream matches the reference window<ticker::test::RangeExactCase>
+
+0.012074 s: Window contract: duplicate-heavy stream matches the reference window<ticker::test::RangeExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:261:
+TEST CASE:  Window contract: duplicate-heavy stream matches the reference window<ticker::test::RangeFallbackCase>
+
+0.012208 s: Window contract: duplicate-heavy stream matches the reference window<ticker::test::RangeFallbackCase>
+===============================================================================
+tests/test_policy_contract.cpp:261:
+TEST CASE:  Window contract: duplicate-heavy stream matches the reference window<ticker::test::RangeNoRebuildExactCase>
+
+0.012026 s: Window contract: duplicate-heavy stream matches the reference window<ticker::test::RangeNoRebuildExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:261:
+TEST CASE:  Window contract: duplicate-heavy stream matches the reference window<ticker::test::HybridCase>
+
+0.011979 s: Window contract: duplicate-heavy stream matches the reference window<ticker::test::HybridCase>
+===============================================================================
+tests/test_policy_contract.cpp:266:
+TEST CASE:  Window contract: out-of-order (clamped) timestamps match the reference window<ticker::test::ExactMapCase>
+
+0.028180 s: Window contract: out-of-order (clamped) timestamps match the reference window<ticker::test::ExactMapCase>
+===============================================================================
+tests/test_policy_contract.cpp:266:
+TEST CASE:  Window contract: out-of-order (clamped) timestamps match the reference window<ticker::test::SortedVectorCase>
+
+0.028248 s: Window contract: out-of-order (clamped) timestamps match the reference window<ticker::test::SortedVectorCase>
+===============================================================================
+tests/test_policy_contract.cpp:266:
+TEST CASE:  Window contract: out-of-order (clamped) timestamps match the reference window<ticker::test::SortedVectorFreqCase>
+
+0.028163 s: Window contract: out-of-order (clamped) timestamps match the reference window<ticker::test::SortedVectorFreqCase>
+===============================================================================
+tests/test_policy_contract.cpp:266:
+TEST CASE:  Window contract: out-of-order (clamped) timestamps match the reference window<ticker::test::TrackedHistogramCase>
+
+0.028012 s: Window contract: out-of-order (clamped) timestamps match the reference window<ticker::test::TrackedHistogramCase>
+===============================================================================
+tests/test_policy_contract.cpp:266:
+TEST CASE:  Window contract: out-of-order (clamped) timestamps match the reference window<ticker::test::RangeExactCase>
+
+0.028116 s: Window contract: out-of-order (clamped) timestamps match the reference window<ticker::test::RangeExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:266:
+TEST CASE:  Window contract: out-of-order (clamped) timestamps match the reference window<ticker::test::RangeFallbackCase>
+
+0.028021 s: Window contract: out-of-order (clamped) timestamps match the reference window<ticker::test::RangeFallbackCase>
+===============================================================================
+tests/test_policy_contract.cpp:266:
+TEST CASE:  Window contract: out-of-order (clamped) timestamps match the reference window<ticker::test::RangeNoRebuildExactCase>
+
+0.028066 s: Window contract: out-of-order (clamped) timestamps match the reference window<ticker::test::RangeNoRebuildExactCase>
+===============================================================================
+tests/test_policy_contract.cpp:266:
+TEST CASE:  Window contract: out-of-order (clamped) timestamps match the reference window<ticker::test::HybridCase>
+
+0.028107 s: Window contract: out-of-order (clamped) timestamps match the reference window<ticker::test::HybridCase>
+===============================================================================
+tests/test_probe.cpp:14:
+TEST CASE:  LatencyHist: exact (1 ns buckets) through 4094 ns
+
+0.000175 s: LatencyHist: exact (1 ns buckets) through 4094 ns
+===============================================================================
+tests/test_probe.cpp:23:
+TEST CASE:  LatencyHist: bucket lower bound never overstates the value
+
+0.000198 s: LatencyHist: bucket lower bound never overstates the value
+===============================================================================
+tests/test_probe.cpp:30:
+TEST CASE:  LatencyHist: relative bucketing error stays within the documented 1/2048 bound
+
+0.000004 s: LatencyHist: relative bucketing error stays within the documented 1/2048 bound
+===============================================================================
+tests/test_probe.cpp:40:
+TEST CASE:  LatencyHist: percentiles track a sorted reference within the bucketing bound
+
+0.013512 s: LatencyHist: percentiles track a sorted reference within the bucketing bound
+===============================================================================
+tests/test_probe.cpp:62:
+TEST CASE:  LatencyHist: min/max/mean/count track exactly regardless of bucketing
+
+0.000004 s: LatencyHist: min/max/mean/count track exactly regardless of bucketing
+===============================================================================
+tests/test_probe.cpp:73:
+TEST CASE:  NullTracer: enter() returns a Scope that is empty (zero runtime state)
+
+0.000003 s: NullTracer: enter() returns a Scope that is empty (zero runtime state)
+===============================================================================
+tests/test_probe.cpp:83:
+TEST CASE:  TscTracer: records into the correct probe's histogram
+
+0.013360 s: TscTracer: records into the correct probe's histogram
+===============================================================================
+tests/test_probe.cpp:97:
+TEST CASE:  TscTracer: note() records counters into the same histogram machinery
+
+0.012730 s: TscTracer: note() records counters into the same histogram machinery
+===============================================================================
+tests/test_probe.cpp:105:
+TEST CASE:  TscTracer: probe-overhead self-calibration lands in a plausible, bounded range
+
+0.012738 s: TscTracer: probe-overhead self-calibration lands in a plausible, bounded range
+===============================================================================
+tests/test_probe.cpp:125:
+TEST CASE:  SlidingWindowStats+TscTracer: WinEvict (duration) and WinEvictCount (eviction count) land in separate histograms, never conflated
+
+0.012717 s: SlidingWindowStats+TscTracer: WinEvict (duration) and WinEvictCount (eviction count) land in separate histograms, never conflated
+===============================================================================
+tests/test_range_bucketing.cpp:11:
+TEST CASE:  RangeBucketing: init rejects an inverted range
+
+0.000005 s: RangeBucketing: init rejects an inverted range
+===============================================================================
+tests/test_range_bucketing.cpp:17:
+TEST CASE:  RangeBucketing: a band that fits under the cap is EXACT -- width()==1
+
+0.000004 s: RangeBucketing: a band that fits under the cap is EXACT -- width()==1
+===============================================================================
+tests/test_range_bucketing.cpp:26:
+TEST CASE:  RangeBucketing: a band wider than the cap clamps band_buckets and reports width()>1
+
+0.000004 s: RangeBucketing: a band wider than the cap clamps band_buckets and reports width()>1
+===============================================================================
+tests/test_range_bucketing.cpp:36:
+TEST CASE:  RangeBucketing: a single-point range (low==high, e.g. a flat 24h band) still yields a valid, exact, single-bucket-wide band
+
+0.000004 s: RangeBucketing: a single-point range (low==high, e.g. a flat 24h band) still yields a valid, exact, single-bucket-wide band
+===============================================================================
+tests/test_range_bucketing.cpp:45:
+TEST CASE:  RangeBucketing: a flat or near-flat band still gets a minimum pad, so a 1-cent move stays in band
+
+0.000004 s: RangeBucketing: a flat or near-flat band still gets a minimum pad, so a 1-cent move stays in band
+===============================================================================
+tests/test_range_bucketing.cpp:63:
+TEST CASE:  RangeBucketing: padding below zero clamps the origin to 0
+
+0.000003 s: RangeBucketing: padding below zero clamps the origin to 0
+===============================================================================
+tests/test_range_bucketing.cpp:71:
+TEST CASE:  RangeBucketing: bucket_of is monotonically non-decreasing in Price across tails and band
+
+0.000010 s: RangeBucketing: bucket_of is monotonically non-decreasing in Price across tails and band
+===============================================================================
+tests/test_range_bucketing.cpp:96:
+TEST CASE:  RangeBucketing: in the EXACT case every in-band price is its own bucket's midpoint, and consecutive cents land in consecutive buckets
+
+0.000153 s: RangeBucketing: in the EXACT case every in-band price is its own bucket's midpoint, and consecutive cents land in consecutive buckets
+===============================================================================
+tests/test_range_bucketing.cpp:114:
+TEST CASE:  RangeBucketing: num_buckets equals band_buckets + 2*kTailBuckets
+
+0.000005 s: RangeBucketing: num_buckets equals band_buckets + 2*kTailBuckets
+===============================================================================
+tests/test_range_bucketing.cpp:120:
+TEST CASE:  RangeBucketing: tail buckets never exceed the valid bucket index range, even at the extremes of Price
+
+0.000005 s: RangeBucketing: tail buckets never exceed the valid bucket index range, even at the extremes of Price
+===============================================================================
+tests/test_range_bucketing.cpp:136:
+TEST CASE:  RangeBucketing: a fuzzed sequence of random prices always returns a bucket in range and bucket_of stays monotonic in Price (property-based check, not just hand-picked points)
+
+0.000253 s: RangeBucketing: a fuzzed sequence of random prices always returns a bucket in range and bucket_of stays monotonic in Price (property-based check, not just hand-picked points)
+===============================================================================
+tests/test_range_histogram_no_rebuild_policy.cpp:33:
+TEST CASE:  RangeHistogramNoRebuildWindow: would_escape() always returns false, at both the policy level and through the SlidingWindowStats seam
+
+0.000016 s: RangeHistogramNoRebuildWindow: would_escape() always returns false, at both the policy level and through the SlidingWindowStats seam
+===============================================================================
+tests/test_range_histogram_no_rebuild_policy.cpp:43:
+TEST CASE:  RangeHistogramNoRebuildWindow: in-band behavior is bit-identical to RangeHistogramWindow -- EnableRebuild only changes out-of-band handling
+
+0.000117 s: RangeHistogramNoRebuildWindow: in-band behavior is bit-identical to RangeHistogramWindow -- EnableRebuild only changes out-of-band handling
+===============================================================================
+tests/test_range_histogram_no_rebuild_policy.cpp:72:
+TEST CASE:  RangeHistogramNoRebuildWindow: a price outside the established band lands in the coarse tail bucket via escape_count(), and rebuild_count() stays 0 -- mean/low/high stay exact regardless (unaffected by EnableRebuild)
+
+0.000006 s: RangeHistogramNoRebuildWindow: a price outside the established band lands in the coarse tail bucket via escape_count(), and rebuild_count() stays 0 -- mean/low/high stay exact regardless (unaffected by EnableRebuild)
+===============================================================================
+tests/test_range_histogram_no_rebuild_policy.cpp:91:
+TEST CASE:  SlidingWindowStats<RangeHistogramNoRebuildWindow>: through the real seam, an escaping price never triggers rebuild_policy_for_escape() -- rebuild_count() stays 0 where RangeHistogramWindow's would have incremented for the identical sequence
+
+0.000019 s: SlidingWindowStats<RangeHistogramNoRebuildWindow>: through the real seam, an escaping price never triggers rebuild_policy_for_escape() -- rebuild_count() stays 0 where RangeHistogramWindow's would have incremented for the identical sequence
+===============================================================================
+tests/test_range_histogram_no_rebuild_policy.cpp:128:
+TEST CASE:  RangeHistogramNoRebuildWindow: repeated escapes never crash and never touch rebuild_count(), even under a monotonic trend (the deque/rebuild worst case for v4)
+
+0.000038 s: RangeHistogramNoRebuildWindow: repeated escapes never crash and never touch rebuild_count(), even under a monotonic trend (the deque/rebuild worst case for v4)
+===============================================================================
+tests/test_range_histogram_policy.cpp:27:
+TEST CASE:  RangeHistogramWindow: Handle layout matches TrackedHistogramWindow's
+
+0.000004 s: RangeHistogramWindow: Handle layout matches TrackedHistogramWindow's
+===============================================================================
+tests/test_range_histogram_policy.cpp:36:
+TEST CASE:  RangeHistogramWindow: fallback mode (no note_market) behaves like TrackedHistogramWindow -- within the proven bound, not exact
+
+0.000005 s: RangeHistogramWindow: fallback mode (no note_market) behaves like TrackedHistogramWindow -- within the proven bound, not exact
+===============================================================================
+tests/test_range_histogram_policy.cpp:47:
+TEST CASE:  RangeHistogramWindow: a caller-supplied invalid range (e.g. the MOG-USD case -- low_24h/high_24h that failed to parse, so the caller has nothing valid to pass) falls back gracefully rather than corrupting state
+
+0.000005 s: RangeHistogramWindow: a caller-supplied invalid range (e.g. the MOG-USD case -- low_24h/high_24h that failed to parse, so the caller has nothing valid to pass) falls back gracefully rather than corrupting state
+===============================================================================
+tests/test_range_histogram_policy.cpp:61:
+TEST CASE:  RangeHistogramWindow: note_market with a real-world-shaped band establishes EXACT bucketing (one cent per bucket), not merely bounded
+
+0.000298 s: RangeHistogramWindow: note_market with a real-world-shaped band establishes EXACT bucketing (one cent per bucket), not merely bounded
+===============================================================================
+tests/test_range_histogram_policy.cpp:71:
+TEST CASE:  RangeHistogramWindow: note_market() is a no-op once any sample has already been inserted -- a range that arrives mid-window doesn't retroactively rebucket (no rebuild in this phase)
+
+0.000004 s: RangeHistogramWindow: note_market() is a no-op once any sample has already been inserted -- a range that arrives mid-window doesn't retroactively rebucket (no rebuild in this phase)
+===============================================================================
+tests/test_range_histogram_policy.cpp:81:
+TEST CASE:  RangeHistogramWindow: a second note_market() call is a no-op even before any insert (first call wins)
+
+0.000035 s: RangeHistogramWindow: a second note_market() call is a no-op even before any insert (first call wins)
+===============================================================================
+tests/test_range_histogram_policy.cpp:93:
+TEST CASE:  RangeHistogramWindow: a price outside the established band is still handled without crashing or corrupting size/low/high, and is counted via escape_count()
+
+0.000034 s: RangeHistogramWindow: a price outside the established band is still handled without crashing or corrupting size/low/high, and is counted via escape_count()
+===============================================================================
+tests/test_range_histogram_policy.cpp:110:
+TEST CASE:  RangeHistogramWindow: repeated escapes on the same side keep escape_count() accurate and never return an out-of-range bucket (verified indirectly: median()/low()/high() never crash or assert across many escapes)
+
+0.000036 s: RangeHistogramWindow: repeated escapes on the same side keep escape_count() accurate and never return an out-of-range bucket (verified indirectly: median()/low()/high() never crash or assert across many escapes)
+===============================================================================
+tests/test_range_histogram_policy.cpp:128:
+TEST CASE:  RangeHistogramWindow: clear() keeps the established range bucketing (using_range_bucketing() and histogram size unchanged), only resetting occupancy -- matching v3's contract that SlidingWindowStats::reset() relies on for multi-pass replay
+
+0.000066 s: RangeHistogramWindow: clear() keeps the established range bucketing (using_range_bucketing() and histogram size unchanged), only resetting occupancy -- matching v3's contract that SlidingWindowStats::reset() relies on for multi-pass replay
+===============================================================================
+tests/test_range_histogram_policy.cpp:155:
+TEST CASE:  RangeHistogramWindow: policy_bytes() after establishing a small range band is far smaller than the ~6.9KB fallback (PriceBucketing::kNumBuckets) allocation
+
+0.000005 s: RangeHistogramWindow: policy_bytes() after establishing a small range band is far smaller than the ~6.9KB fallback (PriceBucketing::kNumBuckets) allocation
+===============================================================================
+tests/test_range_histogram_policy.cpp:177:
+TEST CASE:  RangeHistogramWindow: bit-identical to ExactMapWindow in exact mode, wide-range prices
+
+0.007047 s: RangeHistogramWindow: bit-identical to ExactMapWindow in exact mode, wide-range prices
+===============================================================================
+tests/test_range_histogram_seam.cpp:32:
+TEST CASE:  SlidingWindowStats<RangeHistogramWindow>: on_tick's low_24h/high_24h establishes the range band via note_market(), and stays bit-exact against the brute-force oracle
+
+0.000011 s: SlidingWindowStats<RangeHistogramWindow>: on_tick's low_24h/high_24h establishes the range band via note_market(), and stays bit-exact against the brute-force oracle
+===============================================================================
+tests/test_range_histogram_seam.cpp:49:
+TEST CASE:  SlidingWindowStats<RangeHistogramWindow>: without ever being given low_24h/high_24h, the seam is simply never engaged -- fallback mode, exactly like calling the policy directly with no note_market()
+
+0.000005 s: SlidingWindowStats<RangeHistogramWindow>: without ever being given low_24h/high_24h, the seam is simply never engaged -- fallback mode, exactly like calling the policy directly with no note_market()
+===============================================================================
+tests/test_range_histogram_seam.cpp:59:
+TEST CASE:  SlidingWindowStats<RangeHistogramWindow>: a price outside the established band triggers exactly one rebuild, and the window stays bit-exact against the brute-force oracle across it -- the seam's core correctness claim
+
+0.000013 s: SlidingWindowStats<RangeHistogramWindow>: a price outside the established band triggers exactly one rebuild, and the window stays bit-exact against the brute-force oracle across it -- the seam's core correctness claim
+===============================================================================
+tests/test_range_histogram_seam.cpp:101:
+TEST CASE:  SlidingWindowStats<RangeHistogramWindow>: a monotonic trend that repeatedly escapes the established band still tracks the brute-force oracle exactly, tick by tick, through multiple rebuilds
+
+0.000728 s: SlidingWindowStats<RangeHistogramWindow>: a monotonic trend that repeatedly escapes the established band still tracks the brute-force oracle exactly, tick by tick, through multiple rebuilds
+===============================================================================
+tests/test_range_histogram_seam.cpp:129:
+TEST CASE:  SlidingWindowStats<RangeHistogramWindow>: FIFO fuzz with occasional wide-range escapes, bit-exact against the brute-force oracle at every step
+
+0.059179 s: SlidingWindowStats<RangeHistogramWindow>: FIFO fuzz with occasional wide-range escapes, bit-exact against the brute-force oracle at every step
+===============================================================================
+tests/test_range_histogram_seam.cpp:151:
+TEST CASE:  SlidingWindowStats<RangeHistogramWindow>: the lazy BandFn overload calls `band()` only while the policy still wants_market() -- never again once established, even though the caller keeps offering it every tick
+
+0.000007 s: SlidingWindowStats<RangeHistogramWindow>: the lazy BandFn overload calls `band()` only while the policy still wants_market() -- never again once established, even though the caller keeps offering it every tick
+===============================================================================
+tests/test_range_histogram_seam.cpp:180:
+TEST CASE:  SlidingWindowStats<RangeHistogramWindow>: a band that failed to parse (nullopt) leaves the policy in fallback mode, and band() is only asked once -- a live sample ends wants_market()
+
+0.000005 s: SlidingWindowStats<RangeHistogramWindow>: a band that failed to parse (nullopt) leaves the policy in fallback mode, and band() is only asked once -- a live sample ends wants_market()
+===============================================================================
+tests/test_sliding_window.cpp:17:
+TEST CASE:  SlidingWindowStats: single sample
+
+0.000004 s: SlidingWindowStats: single sample
+===============================================================================
+tests/test_sliding_window.cpp:28:
+TEST CASE:  SlidingWindowStats: an even-count half-cent median rounds up to a cent
+
+0.000004 s: SlidingWindowStats: an even-count half-cent median rounds up to a cent
+===============================================================================
+tests/test_sliding_window.cpp:39:
+TEST CASE:  SlidingWindowStats: mean rounds half-up to a cent
+
+0.000004 s: SlidingWindowStats: mean rounds half-up to a cent
+===============================================================================
+tests/test_sliding_window.cpp:59:
+TEST CASE:  SlidingWindowStats: the mean sum cannot wrap at the top of the Price range
+
+0.000020 s: SlidingWindowStats: the mean sum cannot wrap at the top of the Price range
+===============================================================================
+tests/test_sliding_window.cpp:67:
+TEST CASE:  SlidingWindowStats: eviction exactly on the half-open boundary
+
+0.000005 s: SlidingWindowStats: eviction exactly on the half-open boundary
+===============================================================================
+tests/test_sliding_window.cpp:89:
+TEST CASE:  SlidingWindowStats: out-of-order event time is clamped non-decreasing
+
+0.000004 s: SlidingWindowStats: out-of-order event time is clamped non-decreasing
+===============================================================================
+tests/test_sliding_window.cpp:104:
+TEST CASE:  SlidingWindowStats: reset() makes a reused window behave identically to a fresh one
+
+0.000084 s: SlidingWindowStats: reset() makes a reused window behave identically to a fresh one
+===============================================================================
+tests/test_sliding_window.cpp:135:
+TEST CASE:  SlidingWindowStats: ring grows rather than corrupting state when capacity_hint is too small
+
+0.000717 s: SlidingWindowStats: ring grows rather than corrupting state when capacity_hint is too small
+===============================================================================
+tests/test_sliding_window.cpp:154:
+TEST CASE:  Ring: back()/pop_back() undo push_back(), front()/pop_front() unaffected
+
+0.000005 s: Ring: back()/pop_back() undo push_back(), front()/pop_front() unaffected
+===============================================================================
+tests/test_sliding_window.cpp:172:
+TEST CASE:  Ring: back()/pop_back() correct across the wraparound boundary
+
+0.000005 s: Ring: back()/pop_back() correct across the wraparound boundary
+===============================================================================
+tests/test_sliding_window.cpp:192:
+TEST CASE:  Ring: grow() with a wrapped head keeps FIFO order (front()/at()/size())
+
+0.000004 s: Ring: grow() with a wrapped head keeps FIFO order (front()/at()/size())
+===============================================================================
+tests/test_sliding_window.cpp:212:
+TEST CASE:  Ring: back()/pop_back() interleaved with push_back()/pop_front() against a std::deque oracle
+
+0.000676 s: Ring: back()/pop_back() interleaved with push_back()/pop_front() against a std::deque oracle
+===============================================================================
+tests/test_sorted_vector_policies.cpp:17:
+TEST CASE:  SortedPriceRun: stays sorted through interleaved inserts and erases
+
+0.000006 s: SortedPriceRun: stays sorted through interleaved inserts and erases
+===============================================================================
+tests/test_sorted_vector_policies.cpp:33:
+TEST CASE:  SortedPriceRun: erase of an absent price reports false rather than corrupting the run
+
+0.000004 s: SortedPriceRun: erase of an absent price reports false rather than corrupting the run
+===============================================================================
+tests/test_sorted_vector_policies.cpp:41:
+TEST CASE:  SortedPriceRun: clear() empties without releasing the reservation
+
+0.000005 s: SortedPriceRun: clear() empties without releasing the reservation
+===============================================================================
+tests/test_sorted_vector_policies.cpp:51:
+TEST CASE:  SortedPriceRun: outgrowing the reservation is counted, not silent
+
+0.000008 s: SortedPriceRun: outgrowing the reservation is counted, not silent
+===============================================================================
+tests/test_sorted_vector_policies.cpp:61:
+TEST CASE:  SortedVectorWindow: Handle is price-only, and the Sample it produces is 16 bytes
+
+0.000003 s: SortedVectorWindow: Handle is price-only, and the Sample it produces is 16 bytes
+===============================================================================
+tests/test_sorted_vector_policies.cpp:67:
+TEST CASE:  SortedVectorWindow: clear() keeps the reservation, and the window is reusable after reset()
+
+0.000012 s: SortedVectorWindow: clear() keeps the reservation, and the window is reusable after reset()
+===============================================================================
+tests/test_sorted_vector_policies.cpp:82:
+TEST CASE:  SortedVectorFreqWindow: duplicates collapse to one entry -- the memory claim, checked
+
+0.000006 s: SortedVectorFreqWindow: duplicates collapse to one entry -- the memory claim, checked
+===============================================================================
+tests/test_sorted_vector_policies.cpp:100:
+TEST CASE:  SortedVectorFreqWindow: even-n median whose two middles sit inside the SAME entry's run
+
+0.000005 s: SortedVectorFreqWindow: even-n median whose two middles sit inside the SAME entry's run
+===============================================================================
+tests/test_sorted_vector_policies.cpp:113:
+TEST CASE:  SortedVectorFreqWindow: erasing the tracked entry keeps the median exact, at either end
+
+0.000006 s: SortedVectorFreqWindow: erasing the tracked entry keeps the median exact, at either end
+===============================================================================
+tests/test_sorted_vector_policies.cpp:142:
+TEST CASE:  SortedVectorFreqWindow: a median miss costs the walk distance, not the whole array
+
+0.000010 s: SortedVectorFreqWindow: a median miss costs the walk distance, not the whole array
+===============================================================================
+tests/test_spsc_ring.cpp:27:
+TEST CASE:  SpscRing: push/pop single-threaded ordering<IndexRingTag>
+
+0.000005 s: SpscRing: push/pop single-threaded ordering<IndexRingTag>
+===============================================================================
+tests/test_spsc_ring.cpp:27:
+TEST CASE:  SpscRing: push/pop single-threaded ordering<SlotRingTag>
+
+0.000005 s: SpscRing: push/pop single-threaded ordering<SlotRingTag>
+===============================================================================
+tests/test_spsc_ring.cpp:42:
+TEST CASE:  SpscRing: capacity() reports usable slots<IndexRingTag>
+
+0.000003 s: SpscRing: capacity() reports usable slots<IndexRingTag>
+===============================================================================
+tests/test_spsc_ring.cpp:42:
+TEST CASE:  SpscRing: capacity() reports usable slots<SlotRingTag>
+
+0.000003 s: SpscRing: capacity() reports usable slots<SlotRingTag>
+===============================================================================
+tests/test_spsc_ring.cpp:47:
+TEST CASE:  SpscRing: 1M items through producer/consumer, no loss or reordering<IndexRingTag>
+
+7.052768 s: SpscRing: 1M items through producer/consumer, no loss or reordering<IndexRingTag>
+===============================================================================
+tests/test_spsc_ring.cpp:47:
+TEST CASE:  SpscRing: 1M items through producer/consumer, no loss or reordering<SlotRingTag>
+
+6.823364 s: SpscRing: 1M items through producer/consumer, no loss or reordering<SlotRingTag>
+===============================================================================
+tests/test_spsc_ring.cpp:73:
+TEST CASE:  SpscRing: the feed_done drain handshake never loses or truncates data<IndexRingTag>
+
+4.113341 s: SpscRing: the feed_done drain handshake never loses or truncates data<IndexRingTag>
+===============================================================================
+tests/test_spsc_ring.cpp:73:
+TEST CASE:  SpscRing: the feed_done drain handshake never loses or truncates data<SlotRingTag>
+
+4.119573 s: SpscRing: the feed_done drain handshake never loses or truncates data<SlotRingTag>
+===============================================================================
+tests/test_spsc_ring.cpp:116:
+TEST CASE:  SpscRing: approx_size tracks occupancy<IndexRingTag>
+
+0.000004 s: SpscRing: approx_size tracks occupancy<IndexRingTag>
+===============================================================================
+tests/test_spsc_ring.cpp:116:
+TEST CASE:  SpscRing: approx_size tracks occupancy<SlotRingTag>
+
+0.000004 s: SpscRing: approx_size tracks occupancy<SlotRingTag>
+===============================================================================
+tests/test_symbol_registry.cpp:11:
+TEST CASE:  SymbolRegistry: registers and finds symbols by exact name
+
+0.000005 s: SymbolRegistry: registers and finds symbols by exact name
+===============================================================================
+tests/test_symbol_registry.cpp:25:
+TEST CASE:  SymbolRegistry: unknown symbol returns kNotFound
+
+0.000004 s: SymbolRegistry: unknown symbol returns kNotFound
+===============================================================================
+tests/test_symbol_registry.cpp:31:
+TEST CASE:  SymbolRegistry: distinguishes symbols sharing an 8-byte prefix
+
+0.000004 s: SymbolRegistry: distinguishes symbols sharing an 8-byte prefix
+===============================================================================
+tests/test_symbol_registry.cpp:42:
+TEST CASE:  SymbolRegistry: name_of round-trips
+
+0.000006 s: SymbolRegistry: name_of round-trips
+===============================================================================
+tests/test_symbol_registry.cpp:50:
+TEST CASE:  SymbolRegistry: handles a short product_id (fewer than 8 bytes)
+
+0.000005 s: SymbolRegistry: handles a short product_id (fewer than 8 bytes)
+===============================================================================
+tests/test_symbol_registry.cpp:61:
+TEST CASE:  SymbolRegistry: find() on an empty (never-add()ed) registry
+
+0.000004 s: SymbolRegistry: find() on an empty (never-add()ed) registry
+===============================================================================
+tests/test_symbol_registry.cpp:67:
+TEST CASE:  SymbolRegistry: empty-string query and >8-byte query
+
+0.000004 s: SymbolRegistry: empty-string query and >8-byte query
+===============================================================================
+tests/test_symbol_registry.cpp:78:
+TEST CASE:  SymbolRegistry: reserve()/constructor(max_symbols) sizes the table without changing behavior
+
+0.000096 s: SymbolRegistry: reserve()/constructor(max_symbols) sizes the table without changing behavior
+===============================================================================
+tests/test_symbol_registry.cpp:92:
+TEST CASE:  SymbolRegistry: >= 600 symbols with no reserve() forces at least one rehash, all still find()-able afterward
+
+0.000139 s: SymbolRegistry: >= 600 symbols with no reserve() forces at least one rehash, all still find()-able afterward
+===============================================================================
+tests/test_symbol_registry.cpp:115:
+TEST CASE:  SymbolRegistry: fuzz -- random strings (including engineered 8-byte-prefix collisions) against a std::map reference
+
+0.087694 s: SymbolRegistry: fuzz -- random strings (including engineered 8-byte-prefix collisions) against a std::map reference
+===============================================================================
+tests/test_tracked_histogram_policy.cpp:14:
+TEST CASE:  TrackedHistogramWindow: Handle layout
+
+0.000003 s: TrackedHistogramWindow: Handle layout
+===============================================================================
+tests/test_tracked_histogram_policy.cpp:26:
+TEST CASE:  TrackedHistogramWindow: the first insert parks the cursor (no search); a repeated median() call with no state change never moves it
+
+0.000007 s: TrackedHistogramWindow: the first insert parks the cursor (no search); a repeated median() call with no state change never moves it
+===============================================================================
+tests/test_tracked_histogram_policy.cpp:42:
+TEST CASE:  TrackedHistogramWindow: inserting/erasing far from the median bucket triggers no new fallback (O(1) path taken)
+
+0.000006 s: TrackedHistogramWindow: inserting/erasing far from the median bucket triggers no new fallback (O(1) path taken)
+===============================================================================
+tests/test_tracked_histogram_policy.cpp:71:
+TEST CASE:  TrackedHistogramWindow: fallback_count() stays a small fraction of operation count on a realistic-magnitude duplicate-heavy stream
+
+0.000132 s: TrackedHistogramWindow: fallback_count() stays a small fraction of operation count on a realistic-magnitude duplicate-heavy stream
+===============================================================================
+[doctest] test cases:     300 |     300 passed | 0 failed | 0 skipped
+[doctest] assertions: 9594385 | 9594385 passed | 0 failed |
+[doctest] Status: SUCCESS!
